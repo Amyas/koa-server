@@ -8,6 +8,8 @@ const router = new KoaRouter({
 });
 
 router
-  .get('/home', $.home.index);
+  .get('/home', $.home.index)
+  .get('/test', $.home.test)
+  .get('/login', $.home.login);
 
 exports = module.exports = router;
