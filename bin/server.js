@@ -6,7 +6,7 @@ const json = require('koa-json');
 
 const config = require('../config');
 const logger = require('../lib/logger').logger('server');
-const {redis,session} = require('../lib/redis')
+const { redis, session } = require('../lib/redis');
 
 const middleware = require('../middleware');
 const ApiRoutes = require('../routers');
@@ -26,7 +26,7 @@ try {
     .use(async (ctx, next) => {
       ctx.helper = Helper;
       ctx.service = Service;
-      ctx.redis = redis
+      ctx.redis = redis;
       const start = new Date();
       await next();
       const ms = new Date() - start;
