@@ -1,10 +1,7 @@
 'use strict';
 
 module.exports = {
-  redis: {
-    host: 'mall_redis',
-    port: 6379,
-  },
+  redis: 'mall_redis',
   mongodb: {
     mall: {
       host: 'mall_mongo',
