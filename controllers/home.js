@@ -6,6 +6,7 @@ exports.index = async ctx => {
 };
 
 exports.test = async ctx => {
+  console.log(await ctx.redis.get('key'));
   if (!ctx.session.username) {
     ctx.body = ctx.helper.fail('请登录');
     return;
