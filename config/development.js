@@ -1,5 +1,10 @@
 'use strict';
 
 module.exports = {
-  port: 3744,
+  mongodb: {
+    mall: {
+      host: 'localhost:27017',
+      dbName: 'mall',
+    },
+  },
 };

@@ -5,13 +5,13 @@ const bodyParser = require('koa-bodyparser');
 const json = require('koa-json');
 
 const logger = require('../lib/logger').logger('server');
-
 const config = require('../config');
 const middleware = require('../middleware');
-
 const ApiRoutes = require('../routers');
 const Helper = require('../helpers');
 const Service = require('../services');
+
+require('../lib/mongoose');
 
 const app = new Koa();
 
