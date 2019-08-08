@@ -15,6 +15,7 @@ exports.test = async ctx => {
 };
 
 exports.login = async ctx => {
+  console.log(ctx.session);
   ctx.session.username = 'amyas';
   ctx.body = ctx.helper.success('登录成功');
 };
