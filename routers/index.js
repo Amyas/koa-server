@@ -13,6 +13,7 @@ router
 
 router
   .post('/login', $.user.login)
-  .post('/', '/user', $.user.create);
+  .post('/user', $.user.create)
+  .delete('/user/:id', $.user.delete);
 
 exports = module.exports = router;

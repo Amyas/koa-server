@@ -27,6 +27,28 @@ exports.create = async ctx => {
 };
 
 /**
+ * @api {DELETE} /api/user/:id 删除用户
+ * @apiName 删除用户
+ * @apiGroup user
+ * @apiVersion  1.0.0
+ */
+
+exports.delete = async ctx => {
+
+  const user = await ctx.model.user.findOneAndUpdate({
+    _id: ctx.params.id,
+    isActive: true,
+  }, { $set: { isActive: false } });
+
+  if (!user) {
+    ctx.body = ctx.helper.fail('用户不存在');
+    return;
+  }
+  ctx.body = ctx.helper.success('删除用户成功');
+
+};
+
+/**
  * @api {POST} /api/login 登录
  * @apiName 登录
  * @apiGroup user
