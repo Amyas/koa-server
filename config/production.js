@@ -1,11 +1,17 @@
 'use strict';
 
 module.exports = {
-  redis: 'mall_redis',
+  redis:{
+    all:'localhost:6379',
+    password:'1425qw'
+  },
   mongodb: {
     mall: {
-      host: 'mall_mongo',
+      host: '139.159.143.193:27017',
       dbName: 'mall',
+      userName: "amyas",
+      password: "1425qw",
+      authSource: "admin"
     },
   },
 };

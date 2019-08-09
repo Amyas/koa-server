@@ -1,7 +1,9 @@
 'use strict';
 
 module.exports = {
-  redis: 'localhost:6379',
+  redis:{
+    all:'localhost:6379',
+  },
   mongodb: {
     mall: {
       host: 'localhost:27017',
