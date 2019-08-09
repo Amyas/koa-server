@@ -13,7 +13,7 @@ const ApiRoutes = require('../routers');
 const Helper = require('../helpers');
 const Service = require('../services');
 
-const path = require('path');
+// const path = require('path');
 
 require('../lib/mongoose');
 
@@ -22,7 +22,7 @@ app.keys = [ 'amyas_mall_session_token' ];
 
 app.use(bodyParser());
 app.use(json());
-app.use(require('koa-static')(path.join(__dirname, '../', '/docs')));
+// app.use(require('koa-static')(path.join(__dirname, '../', '/docs')));
 
 try {
   app
