@@ -9,7 +9,10 @@ const router = new KoaRouter({
 
 router
   .get('/home', $.home.index)
-  .get('/test', $.home.test)
-  .get('/login', $.home.login);
+  .get('/test', $.home.test);
+
+router
+  .post('/login', $.user.login)
+  .post('/', '/user', $.user.create);
 
 exports = module.exports = router;
