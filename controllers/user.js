@@ -1,5 +1,15 @@
 'use strict';
 
+/**
+ * @api {POST} /api/user 创建用户
+ * @apiName 创建用户
+ * @apiGroup user
+ * @apiVersion  1.0.0
+ * @apiParam  {String} username 账号
+ * @apiParam  {String} password 密码
+ * @apiParam  {String} name 账号
+ */
+
 exports.create = async ctx => {
   const data = ctx.request.body;
 
@@ -10,11 +20,20 @@ exports.create = async ctx => {
   };
   ctx.validate(rules, data);
 
-  const user = new ctx.model.user(data);
+  const user = new ctx.model.user(data, { password: 0 });
   await user.save();
 
   ctx.body = ctx.helper.success(user);
 };
+
+/**
+ * @api {POST} /api/login 登录
+ * @apiName 登录
+ * @apiGroup user
+ * @apiVersion  1.0.0
+ * @apiParam  {String} username 账号
+ * @apiParam  {String} password 密码
+ */
 
 exports.login = async ctx => {
   const data = ctx.request.body;

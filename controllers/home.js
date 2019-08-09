@@ -5,21 +5,6 @@ exports.index = async ctx => {
   ctx.body = ctx.helper.success(res);
 };
 
-
-/**
- * @api {GET} /api/test 测试session
- * @apiName apiName
- * @apiGroup test
- * @apiVersion  1.0.0
- *
- * @apiParam  {String} test 测试字段
- *
- * @apiParamExample Response-Body:
- * {
- *     session : 123123
- * }
- */
-
 exports.test = async ctx => {
   if (!ctx.session.username) {
     ctx.body = ctx.helper.fail('请登录');
