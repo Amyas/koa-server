@@ -2,7 +2,7 @@
 
 module.exports = {
   redis:{
-    all:'localhost:6379',
+    all:'139.159.143.193:6379',
     password:'1425qw'
   },
   mongodb: {
