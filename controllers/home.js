@@ -6,13 +6,12 @@ exports.index = async ctx => {
 };
 
 exports.test = async ctx => {
-  ctx.redis.set('key',1)
   if (!ctx.session.username) {
     ctx.body = ctx.helper.fail('请登录');
     return;
   }
   const session = await ctx.redis.get(`mall:${ctx.sessionId}`);
-  ctx.body = ctx.helper.success(JSON.parse(session));
+  ctx.body = ctx.helper.success(session);
 };
 
 exports.login = async ctx => {
