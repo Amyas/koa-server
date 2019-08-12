@@ -29,7 +29,7 @@ exports.create = async ctx => {
   const goodsClass = new ctx.model.goodsClass(data);
   await goodsClass.save();
 
-  ctx.body = ctx.helper.success(goodsClass);
+  ctx.body = ctx.helper.success('创建成功');
 };
 
 /**
@@ -71,7 +71,7 @@ exports.update = async ctx => {
     return;
   }
 
-  ctx.body = ctx.helper.success(goodsClass);
+  ctx.body = ctx.helper.success('更新成功');
 };
 
 /**
