@@ -2,7 +2,6 @@
 
 /**
  * @api {POST} /api/user 创建用户
- * @apiName 创建用户
  * @apiGroup user
  * @apiVersion  1.0.0
  * @apiParam  {String} username 账号
@@ -51,7 +50,6 @@ exports.create = async ctx => {
 
 /**
  * @api {DELETE} /api/user/:id 删除用户
- * @apiName 删除用户
  * @apiGroup user
  * @apiVersion  1.0.0
  */
@@ -82,7 +80,6 @@ exports.delete = async ctx => {
 
 /**
  * @api {PUT} /api/user 更新用户
- * @apiName 更新用户
  * @apiGroup user
  * @apiVersion  1.0.0
  * @apiParam  {String} [password] 密码
@@ -111,7 +108,6 @@ exports.update = async ctx => {
 
 /**
  * @api {GET} /api/user 用户列表
- * @apiName 用户列表
  * @apiGroup user
  * @apiVersion  1.0.0
  * @apiParam  {String} [pageNumber] 当前页数
@@ -148,7 +144,6 @@ exports.index = async ctx => {
 
 /**
  * @api {POST} /api/login 登录
- * @apiName 登录
  * @apiGroup user
  * @apiVersion  1.0.0
  * @apiParam  {String} username 账号
