@@ -80,7 +80,7 @@ exports.update = async ctx => {
  * @apiVersion  1.0.0
  * @apiParam  {String} [pageNumber=1] 当前页数
  * @apiParam  {String} [pageSize=20] 每页显示的个数
- * @apiParam  {String} [name=男装] 模糊查询名称
+ * @apiParam  {String} [name] 模糊查询名称
  */
 
 exports.index = async ctx => {

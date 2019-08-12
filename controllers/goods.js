@@ -106,7 +106,7 @@ exports.update = async ctx => {
  * @apiVersion  1.0.0
  * @apiParam  {String} [pageNumber=1] 当前页数
  * @apiParam  {String} [pageSize=20] 每页显示的个数
- * @apiParam  {String} [_class=ClassObjectId] 按分类查询
+ * @apiParam  {ObjectId} [_classs] 按分类查询
  */
 
 exports.index = async ctx => {
