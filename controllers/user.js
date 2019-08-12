@@ -45,6 +45,7 @@ exports.create = async ctx => {
     createTime: Date.now(),
   }, { upsert: true, new: true });
 
+  delete user.password;
   ctx.body = ctx.helper.success(user);
 };
 
@@ -106,6 +107,43 @@ exports.update = async ctx => {
 
   delete user.password;
   ctx.body = ctx.helper.success(user);
+};
+
+/**
+ * @api {GET} /api/user 用户列表
+ * @apiName 用户列表
+ * @apiGroup user
+ * @apiVersion  1.0.0
+ * @apiParam  {String} [pageNumber] 当前页数
+ * @apiParam  {String} [pageSize] 每页显示的个数
+ */
+
+exports.index = async ctx => {
+  const {
+    pageNumber,
+    pageSize,
+    sortBy,
+    orderBy,
+    filter,
+  } = await ctx.helper.handleQuery(ctx.query);
+
+  // 模糊查询名称
+  if (filter.name) {
+    filter.name = new RegExp(filter.name, 'i');
+  }
+
+  const [ items, total ] = await Promise.all([
+    ctx.model.user.find(filter, { password: 0 })
+      .skip((pageNumber - 1) * pageSize)
+      .limit(pageSize)
+      .sort({ [sortBy]: orderBy }),
+    ctx.model.user.count(filter),
+  ]);
+
+  ctx.body = ctx.helper.success({
+    items,
+    total,
+  });
 };
 
 /**
