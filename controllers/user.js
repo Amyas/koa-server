@@ -11,6 +11,12 @@
  */
 
 exports.create = async ctx => {
+  const { user: sessionUser } = ctx.session;
+  if (sessionUser.username !== 'wangjianpeng') {
+    ctx.body = ctx.helper.fail('你不是超级管理员，不能创建用户');
+    return;
+  }
+
   const data = ctx.request.body;
 
   const rules = {
@@ -20,8 +26,24 @@ exports.create = async ctx => {
   };
   ctx.validate(rules, data);
 
-  const user = new ctx.model.user(data, { password: 0 });
-  await user.save();
+  const {
+    username,
+    password,
+    name,
+  } = data;
+
+  const user = await ctx.model.user.findOneAndUpdate({
+    username,
+    password,
+    name,
+    isActive: false,
+  }, {
+    username,
+    password,
+    name,
+    isActive: true,
+    createTime: Date.now(),
+  }, { upsert: true, new: true });
 
   ctx.body = ctx.helper.success(user);
 };
@@ -34,6 +56,15 @@ exports.create = async ctx => {
  */
 
 exports.delete = async ctx => {
+  const { user: sessionUser } = ctx.session;
+  if (sessionUser.username !== 'wangjianpeng') {
+    ctx.body = ctx.helper.fail('你不是超级管理员');
+    return;
+  }
+  if (sessionUser._id === ctx.params.id) {
+    ctx.body = ctx.helper.fail('你不能删除你自己o(╯□╰)o');
+    return;
+  }
 
   const user = await ctx.model.user.findOneAndUpdate({
     _id: ctx.params.id,
@@ -70,6 +101,10 @@ exports.login = async ctx => {
 
   if (!user) {
     ctx.body = ctx.helper.fail('用户不存在');
+    return;
+  }
+  if (!user.isActive) {
+    ctx.body = ctx.helper.fail('用户已被删除');
     return;
   }
 
