@@ -31,7 +31,7 @@ exports.create = async ctx => {
     name,
   } = data;
 
-  const user = await ctx.model.user.findOneAndUpdate({
+  await ctx.model.user.findOneAndUpdate({
     username,
     password,
     name,
@@ -42,10 +42,9 @@ exports.create = async ctx => {
     name,
     isActive: true,
     createTime: Date.now(),
-  }, { upsert: true, new: true });
+  }, { upsert: true });
 
-  delete user.password;
-  ctx.body = ctx.helper.success(user);
+  ctx.body = ctx.helper.success('创建成功');
 };
 
 /**
@@ -74,7 +73,8 @@ exports.delete = async ctx => {
     ctx.body = ctx.helper.fail('用户不存在');
     return;
   }
-  ctx.body = ctx.helper.success('删除用户成功');
+
+  ctx.body = ctx.helper.success('删除成功');
 
 };
 
@@ -96,14 +96,13 @@ exports.update = async ctx => {
   const filter = [ 'password', 'name' ];
   const data = await ctx.helper.filterParams(ctx.request.body, filter);
 
-  const user = await ctx.model.user.findByIdAndUpdate(ctx.params.id, { $set: data }, { new: true });
+  const user = await ctx.model.user.findByIdAndUpdate(ctx.params.id, { $set: data });
   if (!user) {
     ctx.body = ctx.helper.fail('用户不存在');
     return;
   }
 
-  delete user.password;
-  ctx.body = ctx.helper.success(user);
+  ctx.body = ctx.helper.success('更新成功');
 };
 
 /**
