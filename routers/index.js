@@ -26,4 +26,11 @@ router
   .put('/goods-class/:id', $.goodsClass.update)
   .get('/goods-class', $.goodsClass.index);
 
+// 商品
+router
+  .post('/goods', $.goods.create)
+  .delete('/goods/:id', $.goods.delete)
+  .put('/goods/:id', $.goods.update)
+  .get('/goods', $.goods.index);
+
 exports = module.exports = router;
