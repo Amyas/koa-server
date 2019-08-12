@@ -3,26 +3,15 @@
 const mongoose = require('mongoose');
 const mall = require('../lib/mongoose').mall;
 
-const UserSchema = new mongoose.Schema({
-  // 账号，不能出现重复
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  // 密码
-  password: {
-    type: String,
-    required: true,
-  },
-  // 名字
+const GoodsClassSchema = new mongoose.Schema({
+  // 分类名称
   name: {
     type: String,
     required: true,
   },
   isDeleted: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   createTime: {
     type: Number,
@@ -43,7 +32,7 @@ const updateHook = function() {
   }
 };
 
-UserSchema.pre('findOneAndUpdate', updateHook);
-UserSchema.pre('update', updateHook);
+GoodsClassSchema.pre('findOneAndUpdate', updateHook);
+GoodsClassSchema.pre('update', updateHook);
 
-module.exports = mall.model('User', UserSchema);
+module.exports = mall.model('GoodsClass', GoodsClassSchema);

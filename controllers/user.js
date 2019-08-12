@@ -79,7 +79,7 @@ exports.delete = async ctx => {
 };
 
 /**
- * @api {PUT} /api/user 更新用户
+ * @api {PUT} /api/user/:id 更新用户
  * @apiGroup user
  * @apiVersion  1.0.0
  * @apiParam  {String} [password] 密码

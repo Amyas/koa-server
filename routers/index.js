@@ -11,11 +11,19 @@ router
   .get('/home', $.home.index)
   .get('/test', $.home.test);
 
+// 用户
 router
   .post('/login', $.user.login)
   .post('/user', $.user.create)
   .delete('/user/:id', $.user.delete)
   .put('/user/:id', $.user.update)
   .get('/user', $.user.index);
+
+// 商品分类
+router
+  .post('/goods-class', $.goodsClass.create)
+  .delete('/goods-class/:id', $.goodsClass.delete)
+  .put('/goods-class/:id', $.goodsClass.update)
+  .get('/goods-class', $.goodsClass.index);
 
 exports = module.exports = router;
