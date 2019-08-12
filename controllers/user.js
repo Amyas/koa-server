@@ -110,8 +110,8 @@ exports.update = async ctx => {
  * @api {GET} /api/user 用户列表
  * @apiGroup user
  * @apiVersion  1.0.0
- * @apiParam  {String} [pageNumber] 当前页数
- * @apiParam  {String} [pageSize] 每页显示的个数
+ * @apiParam  {String} [pageNumber=1] 当前页数
+ * @apiParam  {String} [pageSize=20] 每页显示的个数
  */
 
 exports.index = async ctx => {
