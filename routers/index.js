@@ -14,6 +14,7 @@ router
 router
   .post('/login', $.user.login)
   .post('/user', $.user.create)
-  .delete('/user/:id', $.user.delete);
+  .delete('/user/:id', $.user.delete)
+  .put('/user/:id', $.user.update);
 
 exports = module.exports = router;

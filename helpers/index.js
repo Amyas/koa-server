@@ -18,3 +18,13 @@ exports.fail = function(message = '未知错误') {
     },
   };
 };
+
+exports.filterParams = async (data, filter) => {
+  const result = {};
+  filter.forEach(v => {
+    if (data[v]) {
+      result[v] = data[v];
+    }
+  });
+  return result;
+};
