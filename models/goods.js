@@ -35,6 +35,16 @@ const GoodsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  // 商品销量
+  goodsVolume: {
+    type: Number,
+    default: 0,
+  },
+  // 商品是否上架
+  isUpperShelf: {
+    type: Boolean,
+    default: true,
+  },
   // 商品所属分类
   _class: {
     type: ObjectId,

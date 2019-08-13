@@ -11,6 +11,7 @@
  * @apiParam  {ArrayUrl} goodsDescImgUrl 商品详情图
  * @apiParam  {Number} goodsPrice 商品价格
  * @apiParam  {ObjectId} _class 商品所属分类
+ * @apiParam  {Boolean} [isUpperShelf=true] 是否上架
  */
 
 exports.create = async ctx => {
@@ -22,8 +23,9 @@ exports.create = async ctx => {
     goodsImgUrl: { type: 'url', required: true },
     goodsDesc: { type: 'string', required: true },
     goodsDescImgUrl: { type: 'array', itemType: 'url', required: true },
-    goodsPrice: { type: 'number', required: true },
+    goodsPrice: { type: 'int', required: true },
     _class: { type: 'string', required: true },
+    isUpperShelf: { type: 'boolean', default: true, required: false },
   };
 
   ctx.validate(rules, data);
@@ -75,10 +77,20 @@ exports.delete = async ctx => {
  * @apiParam  {String} [goodsDesc] 商品详情
  * @apiParam  {ArrayUrl} [goodsDescImgUrl] 商品详情图
  * @apiParam  {Number} [goodsPrice] 商品价格
+ * @apiParam  {Boolean} [isUpperShelf] 是否上架
  */
 
 exports.update = async ctx => {
-  const filter = [ 'goodsName', 'goodsIntro', 'goodsImgUrl', 'goodsDesc', 'goodsDescImgUrl', 'goodsPrice', '_class' ];
+  const filter = [
+    'goodsName',
+    'goodsIntro',
+    'goodsImgUrl',
+    'goodsDesc',
+    'goodsDescImgUrl',
+    'goodsPrice',
+    '_class',
+    'isUpperShelf',
+  ];
   const data = await ctx.helper.filterParams(ctx.request.body, filter);
 
   if (!data._class) {
