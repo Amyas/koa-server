@@ -161,11 +161,11 @@ exports.login = async ctx => {
   const user = await ctx.model.user.findOne(data);
 
   if (!user) {
-    ctx.body = ctx.helper.fail('用户不存在');
+    ctx.body = ctx.helper.fail('账号密码错误');
     return;
   }
   if (!user.isActive) {
-    ctx.body = ctx.helper.fail('用户已被删除');
+    ctx.body = ctx.helper.fail('用户不存在');
     return;
   }
 
