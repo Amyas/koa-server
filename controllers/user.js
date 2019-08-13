@@ -35,12 +35,12 @@ exports.create = async ctx => {
     username,
     password,
     name,
-    isActive: false,
+    isDeleted: true,
   }, {
     username,
     password,
     name,
-    isActive: true,
+    isDeleted: false,
     createTime: Date.now(),
   }, { upsert: true });
 
@@ -66,8 +66,8 @@ exports.delete = async ctx => {
 
   const user = await ctx.model.user.findOneAndUpdate({
     _id: ctx.params.id,
-    isActive: true,
-  }, { $set: { isActive: false } });
+    isDeleted: false,
+  }, { $set: { isDeleted: true } });
 
   if (!user) {
     ctx.body = ctx.helper.fail('用户不存在');
@@ -158,19 +158,16 @@ exports.login = async ctx => {
   };
   ctx.validate(rules, data);
 
-  const user = await ctx.model.user.findOne(data);
-
+  const user = await ctx.model.user.findOne(data, { password: 0 });
   if (!user) {
     ctx.body = ctx.helper.fail('账号密码错误');
     return;
   }
-  if (!user.isActive) {
+  if (user.isDeleted) {
     ctx.body = ctx.helper.fail('用户不存在');
     return;
   }
 
   ctx.session.user = user;
-
-  delete user.password;
   ctx.body = ctx.helper.success(user);
 };
