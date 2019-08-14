@@ -122,11 +122,6 @@ exports.index = async ctx => {
     filter,
   } = await ctx.helper.handleQuery(ctx.query);
 
-  // 模糊查询名称
-  if (filter.name) {
-    filter.name = new RegExp(filter.name, 'i');
-  }
-
   const [ items, total ] = await Promise.all([
     ctx.model.user.find(filter, { password: 0 })
       .skip((pageNumber - 1) * pageSize)
