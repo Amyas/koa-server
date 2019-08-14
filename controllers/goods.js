@@ -67,7 +67,7 @@ exports.delete = async ctx => {
 };
 
 /**
- * @api {PUT} /api/goods/:id 更新商品分类
+ * @api {PUT} /api/goods/:id 更新商品
  * @apiGroup goods
  * @apiVersion  1.0.0
  * @apiParam  {ObjectId} _class 商品所属分类
@@ -100,7 +100,6 @@ exports.update = async ctx => {
 
   const goods = await ctx.model.goods.findOneAndUpdate({
     _id: ctx.params.id,
-    _class: data._class,
     isDeleted: false,
   }, { $set: data }, { new: true });
 
