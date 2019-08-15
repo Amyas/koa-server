@@ -166,3 +166,8 @@ exports.login = async ctx => {
   ctx.session.user = user;
   ctx.body = ctx.helper.success(user);
 };
+
+
+exports.getUserInfo = async ctx => {
+  ctx.body = ctx.helper.success(ctx.session.user);
+};

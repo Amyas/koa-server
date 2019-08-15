@@ -14,6 +14,7 @@ router
 // 用户
 router
   .post('/login', $.user.login)
+  .get('/getUserInfo', $.user.getUserInfo)
   .post('/user', $.user.create)
   .delete('/user/:id', $.user.delete)
   .put('/user/:id', $.user.update)
