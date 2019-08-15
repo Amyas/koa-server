@@ -167,6 +167,11 @@ exports.login = async ctx => {
   ctx.body = ctx.helper.success(user);
 };
 
+/**
+ * @api {GET} /api/getUserInfo 获取用户信息
+ * @apiGroup user
+ * @apiVersion  1.0.0
+ */
 
 exports.getUserInfo = async ctx => {
   ctx.body = ctx.helper.success(ctx.session.user);
