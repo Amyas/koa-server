@@ -9,7 +9,8 @@ const router = new KoaRouter({
 
 router
   .get('/home', $.home.index)
-  .get('/test', $.home.test);
+  .post('/uploadfile', $.home.uploadfile)
+  .post('/uploadfiles', $.home.uploadfiles);
 
 // 用户
 router

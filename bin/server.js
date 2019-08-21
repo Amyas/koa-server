@@ -1,7 +1,8 @@
 'use strict';
 
 const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
+// const bodyParser = require('koa-bodyparser');
+const koaBody = require('koa-body');
 const json = require('koa-json');
 
 const config = require('../config');
@@ -15,17 +16,23 @@ const Helper = require('../helpers');
 const Service = require('../services');
 const models = require('../models');
 
-// const path = require('path');
+const path = require('path');
 
 require('../lib/mongoose');
 
 const app = new Koa();
 app.keys = [ 'amyas_mall_session_token' ];
 
-app.use(bodyParser());
+// app.use(bodyParser());
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    maxFileSize: 20 * 1024 * 1024, // 设置上传文件最大限制，模式2M
+  },
+}));
 app.use(json());
 validator(app);
-// app.use(require('koa-static')(path.join(__dirname, '../', '/docs')));
+app.use(require('koa-static')(path.join(__dirname, '../', '/public/')));
 
 try {
   app
