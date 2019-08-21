@@ -10,7 +10,7 @@ const router = new KoaRouter({
 router
   .get('/home', $.home.index)
   .post('/uploadfile', $.home.uploadfile)
-  .post('/uploadfiles', $.home.uploadfiles);
+  .get('/files', $.home.getFileList);
 
 // 用户
 router
