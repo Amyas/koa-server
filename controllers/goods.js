@@ -15,7 +15,17 @@
  */
 
 exports.create = async ctx => {
-  const data = ctx.request.body;
+  const filter = [
+    'goodsName',
+    'goodsIntro',
+    'goodsImgUrl',
+    'goodsDesc',
+    'goodsDescImgUrl',
+    'goodsPrice',
+    '_class',
+    'isUpperShelf',
+  ];
+  const data = await ctx.helper.filterParams(ctx.request.body, filter);
 
   const rules = {
     goodsName: { type: 'string', required: true },
