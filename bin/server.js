@@ -4,6 +4,7 @@ const Koa = require('koa');
 // const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
 const json = require('koa-json');
+const cros = require('koa2-cors')
 
 const config = require('../config');
 const logger = require('../lib/logger').logger('server');
@@ -24,6 +25,7 @@ const app = new Koa();
 app.keys = [ 'amyas_mall_session_token' ];
 
 // app.use(bodyParser());
+app.use(cros())
 app.use(koaBody({
   multipart: true,
   formidable: {
