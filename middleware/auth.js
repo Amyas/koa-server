@@ -6,16 +6,16 @@ module.exports = () => async (ctx, next) => {
       await next();
       return;
     }
-    if (!ctx.session.user) {
-      ctx.status = 401;
-      ctx.body = {
-        status: {
-          errCode: 1,
-          errMsg: '请先登录',
-        },
-      };
-      return;
-    }
+    // if (!ctx.session.user) {
+    //   ctx.status = 401;
+    //   ctx.body = {
+    //     status: {
+    //       errCode: 1,
+    //       errMsg: '请先登录',
+    //     },
+    //   };
+    //   return;
+    // }
     await next();
   } catch (err) {
     console.error('-------> ERROR : ', err);
