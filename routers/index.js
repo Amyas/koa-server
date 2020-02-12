@@ -19,7 +19,9 @@ router
   .post('/user', $.user.create)
   .delete('/user/:id', $.user.delete)
   .put('/user/:id', $.user.update)
-  .get('/user', $.user.index);
+  .get('/user', $.user.index)
+  .post('/register', $.user.register)
+  .get('/invitation', $.user.invitation);
 
 // 商品分类
 router

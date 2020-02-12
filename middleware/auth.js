@@ -2,7 +2,7 @@
 
 module.exports = () => async (ctx, next) => {
   try {
-    if (ctx.request.url === '/api/login') {
+    if (ctx.request.url === '/api/login' || ctx.request.url === '/api/register') {
       await next();
       return;
     }

@@ -2,10 +2,11 @@
 
 const mongoose = require('mongoose');
 const mall = require('../lib/mongoose').mall;
+const { ObjectId } = mongoose.Schema.Types;
 
 const UserSchema = new mongoose.Schema({
-  // 账号，不能出现重复
-  username: {
+  // 手机号，不能出现重复
+  phone: {
     type: String,
     required: true,
     unique: true,
@@ -18,11 +19,15 @@ const UserSchema = new mongoose.Schema({
   // 名字
   name: {
     type: String,
+  },
+  // 邀请码，邀请人的_id
+  invitationCode: {
+    type: ObjectId,
     required: true,
   },
   isDeleted: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   createTime: {
     type: Number,

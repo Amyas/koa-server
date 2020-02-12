@@ -1,5 +1,43 @@
 'use strict';
 
+// 我邀请的人
+exports.invitation = async ctx => {
+  const invitationCode = ctx.session.user._id;
+  const user = await ctx.model.user.find({
+    invitationCode,
+  });
+  ctx.body = ctx.helper.success(user);
+};
+
+// 注册;
+exports.register = async ctx => {
+  const data = ctx.request.body;
+
+  const rules = {
+    name: 'string',
+    phone: 'string',
+    password: 'string',
+    invitationCode: 'string',
+  };
+  ctx.validate(rules, data);
+
+  const test = await ctx.model.user.findOne({
+    phone: data.phone,
+    isDeleted: false,
+  });
+
+  if (test) {
+    ctx.body = ctx.helper.fail('用户已存在');
+    return;
+  }
+
+  const user = new ctx.model.user(data);
+  await user.save();
+  ctx.session.user = user;
+
+  ctx.body = ctx.helper.success('创建成功');
+};
+
 /**
  * @api {POST} /api/user 创建用户
  * @apiGroup user
@@ -148,7 +186,6 @@ exports.login = async ctx => {
   const data = ctx.request.body;
 
   const rules = {
-    username: 'string',
     password: 'string',
   };
   ctx.validate(rules, data);
